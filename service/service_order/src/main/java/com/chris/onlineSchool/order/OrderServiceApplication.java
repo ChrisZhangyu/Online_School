@@ -7,6 +7,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.*;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author chris
@@ -22,6 +25,7 @@ public class OrderServiceApplication {
         Map<Character,Integer> mapS = new HashMap<>();
         mapS.keySet();
     }
+
 
 
 }
