@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chris.onlineSchool.vod.mapper.CourseMapper">
+
+
+    <!--     IPage<Course> selectPage(IPage<Course> page, QueryWrapper<Course> queryWrapper);-->
+    <select id="selectPage" resultType="com.chris.onlineSchool.model.vod.Course">
+        select distinct course.*, teacher.name as teacher_name,
+        subject1.title as subject_parent_title, subject2.title as subject_title
+        from course
+        inner join teacher on course.teacher_id = teacher.id
+        inner join subject as subject1  on course.subject_parent_id = subject1.id
+        inner join subject as subject2 on course.subject_id = subject2.id
+        where course.is_deleted = 0
+       <choose>
+           <when test="courseQueryVo.teacherId != null and courseQueryVo.teacherId != ''">
+                and course.teacher_id = #{courseQueryVo.teacherId}
+           </when>
+           <when test="courseQueryVo.subjectId != null and courseQueryVo.subjectId != ''">
+               and course.subject_id = #{courseQueryVo.subjectId}
+           </when>
+           <when test="courseQueryVo.subjectParentId != null and courseQueryVo.subjectParentId != ''">
+               and course.subject_parent_id = #{courseQueryVo.subjectParentId}
+           </when>
+           <when test="courseQueryVo.title != null and courseQueryVo.title != ''">
+               and course.title like '%${courseQueryVo.subjectParentId}%'
+           </when>
+
+       </choose>
+
+        group by course.id
+
+    </select>
+
+
+<!--        CoursePublishVo getPublishById(@Param("id")Long id);-->
+    <select id="getPublishById" resultType="com.chris.onlineSchool.viewobject.vod.CoursePublishVo">
+        SELECT    c.id,
+                  c.title,
+                  c.cover,
+                  c.lesson_num AS lessonNum,
+                  c.price,
+                  t.name AS teacherName,
+                  s1.title AS subjectParentTitle,
+                  s2.title AS subjectTitle
+        FROM course c
+                 left join teacher t on c.teacher_id = t.id
+                 left join `subject` s1 on c.subject_id = s1.id
+                 left join `subject` s2 on c.subject_parent_id = s2.id
+        where c.id = #{id} and c.is_deleted = 0
+    </select>
+</mapper>

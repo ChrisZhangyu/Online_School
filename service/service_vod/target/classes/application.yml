@@ -1,0 +1,34 @@
+server:
+  port: 8301
+
+#不同的环境使用不同的配置，dev 开发  test 测试  prod  生产
+spring:
+  profiles:
+    active: dev
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/glkt_vod?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: lzg13333733390*
+
+  #设置json文件的时间格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  # nacos地址
+  cloud:
+   nacos:
+     discovery:
+       server-addr: 127.0.0.1:8848
+  # 配置服务名称
+  application:
+    name: service-vod
+#设置mybatis-plus的日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
