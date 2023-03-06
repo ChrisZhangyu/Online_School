@@ -9,10 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="service_gateway" />
         <module name="service_activity" />
-        <module name="service_order" />
-        <module name="model" />
+        <module name="service_user" />
         <module name="service_vod" />
         <module name="service_utils" />
+        <module name="service_order" />
+        <module name="model" />
       </profile>
     </annotationProcessing>
   </component>
@@ -24,6 +25,7 @@
       <module name="service_activity" options="-parameters" />
       <module name="service_gateway" options="-parameters" />
       <module name="service_order" options="-parameters" />
+      <module name="service_user" options="-parameters" />
       <module name="service_utils" options="-parameters" />
       <module name="service_vod" options="-parameters" />
     </option>

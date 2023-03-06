@@ -19,6 +19,7 @@
         <module>common</module>
         <module>service_gateway</module>
         <module>service/service_order</module>
+        <module>service/service_user</module>
     </modules>
 
     <properties>

@@ -1,7 +1,8 @@
-package com.chris.onlineSchool.vod.mapper;
+package com.chris.onlineSchool.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.chris.onlineSchool.model.user.UserInfo;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ResponseBody;
 

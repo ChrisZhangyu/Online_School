@@ -1,13 +1,10 @@
-package com.chris.onlineSchool.vod.service.impl;
+package com.chris.onlineSchool.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chris.onlineSchool.model.user.UserInfo;
-import com.chris.onlineSchool.vod.mapper.UserMapper;
-import com.chris.onlineSchool.vod.service.UserService;
-import io.jsonwebtoken.Jwt;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
+import com.chris.onlineSchool.user.mapper.UserMapper;
+import com.chris.onlineSchool.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

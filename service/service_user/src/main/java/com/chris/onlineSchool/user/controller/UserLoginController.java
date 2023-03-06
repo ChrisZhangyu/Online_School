@@ -1,13 +1,14 @@
-package com.chris.onlineSchool.vod.controller;
+package com.chris.onlineSchool.user.controller;
 
 import com.chris.onlineSchool.model.user.UserInfo;
 import com.chris.onlineSchool.result.Result;
-import com.chris.onlineSchool.vod.service.UserService;
+import com.chris.onlineSchool.user.service.UserService;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,14 +22,13 @@ import java.util.UUID;
  * @author chris
  * @date 2022/11/13
  */
-
+@Api(tags = "用户登录测试")
 @RestController
-@RequestMapping("/admin/vod/user")
-//@CrossOrigin
+@RequestMapping("/admin/user")
 public class UserLoginController {
     @Autowired
     private UserService userService;
-
+    @ApiOperation("登录")
     @RequestMapping("login")
     /**
      * @return:
@@ -58,7 +58,7 @@ public class UserLoginController {
 
         }
     }
-
+    @ApiOperation("注册")
     @RequestMapping("register")
     public Result register(@RequestBody UserInfo registerForm){
         return userService.save(registerForm)?Result.success():Result.fail();

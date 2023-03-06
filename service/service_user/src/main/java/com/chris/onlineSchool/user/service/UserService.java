@@ -1,7 +1,8 @@
-package com.chris.onlineSchool.vod.service;
+package com.chris.onlineSchool.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.chris.onlineSchool.model.user.UserInfo;
+import org.springframework.stereotype.Service;
 
 /**
  * @author Chris
