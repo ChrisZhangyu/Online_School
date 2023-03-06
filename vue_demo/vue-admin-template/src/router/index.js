@@ -33,7 +33,26 @@ import Layout from '@/layout'
 export const constantRoutes = [
   {
     path: '/login',
-    component: () => import('@/views/login/index'),
+    component:  () => import('@/views/login/index'),
+    hidden: true,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component:  () => import('@/views/login/index'),
+  //       hidden: true
+  //     },
+  //   //   {
+  //   //   path: '/login/register',
+  //   //   component:  () => import('@/views/login/register'),
+  //   //   hidden: true
+  //   // },
+  //
+  // ]
+  },
+
+  {
+    path: '/register',
+    component: () => import('@/views/login/register'),
     hidden: true
   },
 
@@ -98,8 +117,8 @@ export const constantRoutes = [
         component: () => import('@/views/vod/subject/list'),
         meta: { title: '课程列表', icon: 'table' }
       },
-    
-     
+
+
     ]
   },
   {
@@ -121,7 +140,7 @@ export const constantRoutes = [
         component: () => import('@/views/vod/course/form'),
         meta: { title: '发布课程', icon: 'table' }
       },
-     
+
       {
         path: '/course/info/:id',
         name: 'CourseInfoEdit',
@@ -143,7 +162,7 @@ export const constantRoutes = [
         meta: { title: '课程统计' },
         hidden: true
       }
-     
+
     ]
   },
 
@@ -163,7 +182,7 @@ export const constantRoutes = [
       },
     ]
   },
- 
+
 
   {
     path: '/example',

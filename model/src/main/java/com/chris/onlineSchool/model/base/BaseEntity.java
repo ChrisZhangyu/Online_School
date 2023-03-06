@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.xml.internal.ws.spi.db.DatabindingException;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
