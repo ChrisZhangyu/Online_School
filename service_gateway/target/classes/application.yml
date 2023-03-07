@@ -33,6 +33,11 @@ spring:
           # 配置路由断言，即路径映射, /admin/vod/xx
           predicates:
             - Path=/*/order/**
+        - id: service-user
+          uri: lb://service-user
+          predicates:
+            - Path=/*/user/**
+
 
 
 

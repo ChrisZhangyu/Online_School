@@ -9,9 +9,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -29,15 +27,17 @@ public class UserLoginController {
     @Autowired
     private UserService userService;
     @ApiOperation("登录")
-    @RequestMapping("login")
+    @PostMapping ("login")
     /**
      * @return:
      * {"code":20000,"data":{"token":"admin-token"}}
      */
     public Result login(@RequestBody UserInfo loginForm){
         Map<String, String> response = new HashMap<String, String>();
+
         long time = 1000*60*60;
         String userName = loginForm.getName();
+        System.out.println(userName);
         String id = UUID.randomUUID().toString();
         String signature = userName + id;
         if(userService.verify(userName, loginForm.getPassword())){
@@ -59,13 +59,13 @@ public class UserLoginController {
         }
     }
     @ApiOperation("注册")
-    @RequestMapping("register")
+    @PostMapping("register")
     public Result register(@RequestBody UserInfo registerForm){
         return userService.save(registerForm)?Result.success():Result.fail();
     }
 
 
-    @RequestMapping("info")
+    @GetMapping("info")
     /**
      * @return:
      * {"code":20000,
