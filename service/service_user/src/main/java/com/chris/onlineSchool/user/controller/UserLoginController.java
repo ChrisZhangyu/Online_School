@@ -3,18 +3,13 @@ package com.chris.onlineSchool.user.controller;
 import com.chris.onlineSchool.model.user.UserInfo;
 import com.chris.onlineSchool.result.Result;
 import com.chris.onlineSchool.user.service.UserService;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * @author chris
@@ -26,6 +21,8 @@ import java.util.UUID;
 public class UserLoginController {
     @Autowired
     private UserService userService;
+
+
     @ApiOperation("登录")
     @PostMapping ("login")
     /**
@@ -34,28 +31,13 @@ public class UserLoginController {
      */
     public Result login(@RequestBody UserInfo loginForm){
         Map<String, String> response = new HashMap<String, String>();
-
-        long time = 1000*60*60;
         String userName = loginForm.getName();
-        System.out.println(userName);
-        String id = UUID.randomUUID().toString();
-        String signature = userName + id;
-        if(userService.verify(userName, loginForm.getPassword())){
-            JwtBuilder jwtBuilder = Jwts.builder();
-            String token = jwtBuilder
-                    .setHeaderParam("typ", "JWT")
-                    .setHeaderParam("alg", "HS256")
-                    .setExpiration(new Date(System.currentTimeMillis() + time))
-                    .claim("username", userName)
-                    .claim("role", "user")
-                    .setId(id)
-                    .signWith(SignatureAlgorithm.HS256, signature)
-                    .compact();
+        String token = userService.verify(userName, loginForm.getPassword());
+        if(token.equals("")){
+            return Result.fail(response);
+        }else {
             response.put("token", token);
             return Result.success(response);
-        }else {
-            return Result.fail(response);
-
         }
     }
     @ApiOperation("注册")

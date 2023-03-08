@@ -9,5 +9,5 @@ import org.springframework.stereotype.Service;
  * @date 2023/3/5 21:55
  */
 public interface UserService extends IService<UserInfo> {
-    public Boolean verify(String name, String password);
+    public String verify(String name, String password);
 }
