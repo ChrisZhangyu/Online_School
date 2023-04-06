@@ -1,0 +1,6 @@
+com\chris\onlineSchool\user\service\impl\UserServiceImpl.class
+com\chris\onlineSchool\user\ServiceUserApplication.class
+com\chris\onlineSchool\user\controller\VerifyCodeController.class
+com\chris\onlineSchool\user\mapper\UserMapper.class
+com\chris\onlineSchool\user\service\UserService.class
+com\chris\onlineSchool\user\controller\UserLoginController.class
