@@ -1,0 +1,80 @@
+version: '3'
+services:
+  nacos:
+    image: nacos/nacos-server:2.0.2
+    ports:
+      - 8848:8848
+    environment:
+      - JVM_XMS=128m
+      - JVM_XMX=128m
+      - JVM_MMS=256m
+      - MODE=standalone
+    networks:
+      - network
+    container_name: nacos
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - 8080:80
+      - 9528:80
+    volumes:
+      - type: bind
+        source: /home/online_school/nginx/logs
+        target: /var/log/nginx
+        read_only: false
+        bind:
+          propagation: rshared
+      - type: bind
+        source: /home/online_school/nginx/conf.d
+        target: /etc/nginx/conf.d
+        read_only: false
+        bind:
+          propagation: rslave
+      - type: bind
+        source: /home/online_school/nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: false
+        bind:
+          propagation: rslave
+      - type: bind
+        source: /home/online_school/vue-admin-template/dist
+        target: /usr/share/nginx/html/
+        read_only: false
+        bind:
+          propagation: rslave
+    networks:
+      - network
+
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    container_name: mysql
+    volumes:
+      - /home/online_school/mysql/data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=lzg13333733390*
+    networks:
+      - network
+
+  gateway:
+    image: service-gateway
+    ports:
+      - 8333:8333
+    networks:
+      - network
+
+    container_name: gateway
+#  vue:
+#    image: vue-admin-template
+#    ports:
+#      - 9528:80
+#    environment:
+#      - API_BASE_URL=
+#    networks:
+#      - network
+networks:
+  network:
+
+
